@@ -66,9 +66,5 @@ dump.rdb
 
 # TypeScript
 .tscache
-src/**/*.js.map
-src/**/*.js
-test/**/*.js
-test/**/*.js.map
 dist/
 
