@@ -1,0 +1,66 @@
+{
+  "name": "ts_starter",
+  "version": "0.0.0",
+  "description": "Starter Project for Typescript",
+  "main": "index.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "prepare": "npm run compile",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint . --ext ts --cache --max-warnings 0 --fix",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "test": "./scripts/docker_setup.sh && ENVIRONMENT_LOCAL=true jest --forceExit ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdaum/TS_Starter.git"
+  },
+  "author": "Maxwell Daum <mdaum>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdaum/TS_Starter/issues"
+  },
+  "homepage": "https://github.com/mdaum/TS_Starter#readme",
+  "dependencies": {
+    "aws-sdk": "^2.831.0",
+    "got": "^11.8.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.1.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testRegex": ".(e2e-)?spec.ts$",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "setupFiles": [
+      "./test/utils/jest-setupFiles/setLocalEnvironment.js"
+    ],
+    "testTimeout": 20000
+  },
+  "husky": {
+    "hooks": {}
+  }
+}
