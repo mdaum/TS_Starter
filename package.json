@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint . --ext ts --cache --max-warnings 0 --fix",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "test": "./scripts/docker_setup.sh && ENVIRONMENT_LOCAL=true jest --forceExit ."
+    "test": "jest --forceExit ."
   },
   "repository": {
     "type": "git",
@@ -61,6 +61,8 @@
     "testTimeout": 20000
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-commit": "npm run lint && npm test"
+    }
   }
 }
