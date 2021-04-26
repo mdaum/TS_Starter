@@ -9,7 +9,7 @@
 
 ## Setup
 ### Install Node.js ###
-The Realtime Service requires Node.js to run locally and has been tested with
+This requires Node.js to run locally and has been tested with
 Node 12
 
 See http://nodejs.org/. Alternatively, use Node Version Manager [(NVM)](https://github.com/creationix/nvm)
