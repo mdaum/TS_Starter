@@ -2,7 +2,7 @@ import got from 'got';
 import { GetPokemonResponse, PokemonEntity } from './types';
 
 export async function getAPokemon(pokemonId?: number): Promise<PokemonEntity> {
-  pokemonId = pokemonId ? pokemonId : Math.floor(Math.random()) + 1;
+  pokemonId = pokemonId ? pokemonId : Math.floor(Math.random() * 800) + 1;
   let rawPokemon: GetPokemonResponse;
   try {
     const response = await got.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
