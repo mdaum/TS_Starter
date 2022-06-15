@@ -1,6 +1,11 @@
 import got from 'got';
 import { GetPokemonResponse, PokemonEntity } from './types';
 
+
+// return pokemon by hitting pokeapi with the id provided as param
+// https://pokeapi.co/
+// if an id is not provided, generate a random one (must be >= 1)
+// note there are 800-ish pokemons
 export async function getAPokemon(pokemonId?: number): Promise<PokemonEntity> {
   pokemonId = pokemonId ? pokemonId : Math.floor(Math.random() * 800) + 1;
   let rawPokemon: GetPokemonResponse;
@@ -14,6 +19,7 @@ export async function getAPokemon(pokemonId?: number): Promise<PokemonEntity> {
   return rawPokemonToEntity(rawPokemon);
 }
 
+// converts a GetPokemonResponse to a PokemonEntity
 function rawPokemonToEntity(rawPokemon: GetPokemonResponse): PokemonEntity {
   return {
     id: rawPokemon.id,
