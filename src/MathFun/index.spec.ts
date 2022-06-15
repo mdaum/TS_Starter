@@ -1,4 +1,4 @@
-import { addtorial } from './';
+import { addtorial } from './foo';
 
 describe('mathFun#addtorial', () => {
   it('addtorial should return expected number when valid input is given', () => {
