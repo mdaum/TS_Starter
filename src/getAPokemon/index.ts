@@ -1,13 +1,14 @@
 import got from 'got';
-import { GetPokemonResponse, PokemonEntity } from './types';
+import { GetPokemonResponse, PokemonEntity, EndpointResourceList } from './types';
+import { error } from 'console';
 
 
 // return pokemon by hitting pokeapi with the id provided as param
 // https://pokeapi.co/
 // if an id is not provided, generate a random one (must be >= 1)
-// note there are 800-ish pokemons
 export async function getAPokemon(pokemonId?: number): Promise<PokemonEntity> {
-  pokemonId = pokemonId ? pokemonId : Math.floor(Math.random() * 800) + 1;
+  const numPokemon = await getNumPokemon();
+  pokemonId = pokemonId ? pokemonId : Math.floor(Math.random() * numPokemon) + 1;
   let rawPokemon: GetPokemonResponse;
   try {
     const response = await got.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
@@ -18,6 +19,18 @@ export async function getAPokemon(pokemonId?: number): Promise<PokemonEntity> {
   }
   return rawPokemonToEntity(rawPokemon);
 }
+
+async function getNumPokemon(): Promise<number> {
+  try {
+    const response = await got.get('https://pokeapi.co/api/v2/pokemon');
+    const resourceList: EndpointResourceList = JSON.parse(response.body);
+    return resourceList.count;
+  } catch (err) {
+    console.error(err);
+    throw error;
+  }
+}
+
 
 // converts a GetPokemonResponse to a PokemonEntity
 function rawPokemonToEntity(rawPokemon: GetPokemonResponse): PokemonEntity {

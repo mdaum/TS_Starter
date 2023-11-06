@@ -17,3 +17,9 @@ interface PokemonType {
     url: string;
   };
 }
+
+export interface EndpointResourceList {
+  count: number;
+  next: string;
+  previous: string;
+}
